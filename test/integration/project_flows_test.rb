@@ -26,16 +26,25 @@ class ProjectFlowsTest < ActionDispatch::IntegrationTest
 	end
 
 	test "navigation" do
-		visit "/"
+		# create a project to visit its show page
+		project1 = FactoryGirl.create(:project, :title => "Project 1")
 
+		visit "/"
 		assert_equal root_path, current_path
 
+		# .navbar should contain "Home"
 		assert_equal "Home", find('.navbar ul li.active a').text
 
+		# .navbar should contain a link "Projects"
 		find('.navbar ul').click_link("Projects")
-
 		assert_equal projects_path, current_path
 
+		# "Projects" should be active on the projects_path
+		assert_equal "Projects", find('.navbar ul li.active a').text
+
+		click_link "Project 1"
+
+		# "Projects" should remain active when on a project's show page
 		assert_equal "Projects", find('.navbar ul li.active a').text
 	end
 	
