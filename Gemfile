@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc2'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use postgres as the database for Active Record
+gem "pg", "~> 0.15.1"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'
@@ -30,6 +30,20 @@ gem 'jbuilder', '~> 1.2'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :tools do
+  gem 'guard-test' # automatically runs our tests whenever there have been changes made to them
+end
+
+group :development do
+  gem 'better_errors' # makes the errors we see in the browser more descriptive
+  gem 'pry-rails'
+end
+
+group :test do 
+  gem "factory_girl_rails" 
+  gem "capybara" # needed for our integration tests, which we'll talk about more later
 end
 
 # Use ActiveModel has_secure_password
