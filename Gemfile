@@ -35,9 +35,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :tools do
-  gem 'guard-test' # automatically runs our tests whenever there have been changes made to them
-end
+# group :tools do
+#   gem 'guard-test' # automatically runs our tests whenever there have been changes made to them
+# end
 
 group :development do
   gem 'better_errors' # makes the errors we see in the browser more descriptive
