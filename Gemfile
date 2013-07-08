@@ -49,6 +49,9 @@ group :test do
   gem "capybara" # needed for our integration tests, which we'll talk about more later
 end
 
+# This tutorial requires bootstrap, not us. 
+gem "bootstrap-sass", "~> 2.3.2.0"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
