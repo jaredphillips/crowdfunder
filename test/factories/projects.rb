@@ -6,6 +6,6 @@ FactoryGirl.define do
   	title "Star Wars"
   	teaser "Awesome Movie"
   	description "Fighting in space and shit"
-  	goal 1000000
+  	goal 10000000
   end
 end
