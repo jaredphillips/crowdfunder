@@ -13,10 +13,12 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 
+  teardown do   
+    DatabaseCleaner.clean 
+  end
 end
 
 DatabaseCleaner.strategy = :truncation
-
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
@@ -27,7 +29,6 @@ class ActionDispatch::IntegrationTest
   Capybara.javascript_driver = :webkit
 
   self.use_transactional_fixtures = false
-
 
   teardown do   
     DatabaseCleaner.clean 
@@ -43,5 +44,7 @@ class ActionDispatch::IntegrationTest
     fill_in 'email', with: user.email
     fill_in 'password', with: pass
     click_button 'Login'
+    
+    user
   end
 end
