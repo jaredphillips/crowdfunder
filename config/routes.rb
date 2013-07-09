@@ -1,4 +1,11 @@
 Crowdfunder::Application.routes.draw do
+  get "projects/index"
+  get "projects/show"
+  get "projects/new"
+  get "projects/create"
+  get "projects/edit"
+  get "projects/update"
+  get "projects/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root 'static_pages#home'
@@ -13,6 +20,10 @@ Crowdfunder::Application.routes.draw do
   delete 'logout', to: 'sessions#destroy', as: :logout
 
   resources :sessions
+
+  namespace :my do
+    resources :projects
+  end
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
