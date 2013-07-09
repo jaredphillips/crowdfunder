@@ -43,4 +43,40 @@ class UserAuthenticationFlowsTest < ActionDispatch::IntegrationTest
 		# should see try again message on failure to register
 		assert_equal "Try again!", find('.alert').text
 	end
+
+	test "successful login" do
+
+		visit '/'
+		# make sure nav bar does not have link 'log out'
+		assert find('.navbar').has_no_link?("Log Out")
+		# set up signed in user 
+		user = setup_signed_in_user
+		# make sure link for log out exists
+		assert find('.navbar').has_link?("Log Out")
+	end
+
+	test "failed log in" do
+
+		visit '/login'
+		# fill in email with wrong email
+		fill_in "email", with: "wrong@email.com"
+		click_button "Login"
+		assert_equal sessions_path, current_path
+		# make sure page says invalid?
+		assert_equal "Email or password not found", find('.error').text
+	end
+
+	test "successful log out" do
+		Capybara.current_driver = Capybara.javascript_driver
+
+		user = setup_signed_in_user
+
+		visit '/'
+		# click log out in navbar 
+		find('.navbar').click_button("Log Out")
+		# make sure page has "Bye!"
+		assert_equal "Bye!", find('.notice').text
+		assert find('.navbar').has_no_link?("Log Out")
+	end
+
 end

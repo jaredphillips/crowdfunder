@@ -15,14 +15,33 @@ class ActiveSupport::TestCase
 
 end
 
+DatabaseCleaner.strategy = :truncation
+
 
 class ActionDispatch::IntegrationTest
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
 
   Capybara.app = Crowdfunder::Application
-  teardown do 
+  
+  Capybara.javascript_driver = :webkit
+
+  self.use_transactional_fixtures = false
+
+
+  teardown do   
+    DatabaseCleaner.clean 
     Capybara.reset_sessions! # Forget the browser state
     Capybara.use_default_driver # Revert Capybara.current_driver to Capybara.default_driver
+  end
+
+  def setup_signed_in_user
+    pass = "12345678"
+    user = FactoryGirl.create :user, password: pass
+    visit '/login'
+
+    fill_in 'email', with: user.email
+    fill_in 'password', with: pass
+    click_button 'Login'
   end
 end

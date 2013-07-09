@@ -46,7 +46,9 @@ end
 
 group :test do 
   gem "factory_girl_rails" 
-  gem "capybara" # needed for our integration tests, which we'll talk about more later
+  gem "capybara"  # needed for our integration tests, which we'll talk about more later
+  gem 'database_cleaner' # used to undo any changes we made to the database during tests
+  gem 'capybara-webkit' #capybara driver needed to handle javascript.
 end
 
 # This tutorial requires bootstrap, not us. 

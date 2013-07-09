@@ -40,6 +40,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.0.0)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -48,6 +51,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    database_cleaner (1.0.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -160,7 +164,9 @@ DEPENDENCIES
   better_errors
   bootstrap-sass (~> 2.3.2.0)
   capybara
+  capybara-webkit
   coffee-rails (~> 4.0.0)
+  database_cleaner
   factory_girl_rails
   jbuilder (~> 1.2)
   jquery-rails
