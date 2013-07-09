@@ -3,8 +3,10 @@ Crowdfunder::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
   root 'static_pages#home'
 
-  resources :projects
-
+  resources :projects do
+    resources :pledges, shallow: true
+  end
+  
   resources :users
 
   get 'login', to: 'sessions#new', as: :login

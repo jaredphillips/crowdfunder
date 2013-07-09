@@ -1,5 +1,6 @@
 require 'test_helper'
 
+
 class PledgeTest < ActiveSupport::TestCase
 	
 	test "requires a user" do

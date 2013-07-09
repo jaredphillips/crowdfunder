@@ -9,7 +9,7 @@ class PledgeFlowsTest < ActionDispatch::IntegrationTest
 		visit project_path(@project)
 
 		# navigate to login page if not logged in
-		click_button "Support this project!"
+		click_link "Support this project!"
 		assert_equal login_path, current_path
 
 		# see alert message explaining how you got there
@@ -22,7 +22,7 @@ class PledgeFlowsTest < ActionDispatch::IntegrationTest
 		visit project_path(@project)
 
 		# navigate to new pledge page if logged in
-		click_button "Support this project!"
+		click_link "Support this project!"
 		assert_equal new_project_pledge_path(@project), current_path
 
 		# pledge count should be 0
