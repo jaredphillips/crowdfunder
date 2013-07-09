@@ -1,7 +1,11 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="<%= current_page? root_path ? '#' : root_path %>">CrowdFunder</a>
+      <% if current_page? root_path %>
+        <%= link_to 'CrowdFunder', '#', class: "brand" %>
+      <% else %>
+        <%= link_to 'CrowdFunder', root_path, class: "brand" %>
+      <% end %>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li class="<%= 'active' if current_page? root_path %>">
@@ -9,7 +13,16 @@
           </li>
           <li class="<%= 'active' if (current_page? projects_path(@project)) || (current_page? project_path(@project)) %>">
             <%= link_to 'Projects', :projects %>
-          </li>
+          </li>          
+          <% if logged_in? %>
+            <li>
+              <%= link_to 'Log Out', :root %>
+            </li>
+          <% else %>
+            <li class="<%= 'active' if (current_page? new_user_path) %>">
+              <%= link_to 'Sign up', :new_user %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>

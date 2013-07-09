@@ -1,4 +1,6 @@
 <h1>All projects</h1>
+<ul>
 <% @projects.each do |project| %>
-	<h1><%= link_to project.title, project %></h1>
+	<li><%= link_to project.title, project %></li>
 <% end %>
+</ul>
