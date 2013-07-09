@@ -10,10 +10,10 @@ class UsersController < ApplicationController
   	@user = User.create(user_params)
 
     if @user.save
-      flash[:notice] = "Account Created"
+      flash[:notice] = "Account Created!"
       redirect_to root_path
   	else
-      flash.now[:alert] = "There was an error with your registration."
+      flash.now[:alert] = "Try again!"
       render 'new'
     end
   end
