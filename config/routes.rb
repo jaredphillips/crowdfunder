@@ -1,6 +1,4 @@
 Crowdfunder::Application.routes.draw do
-  get "users/new"
-  get "users/create"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root 'static_pages#home'
@@ -8,6 +6,11 @@ Crowdfunder::Application.routes.draw do
   resources :projects
 
   resources :users
+
+  get 'login', to: 'sessions#new', as: :login
+  delete 'logout', to: 'sessions#destroy', as: :logout
+
+  resources :sessions
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

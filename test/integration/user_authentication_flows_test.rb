@@ -47,10 +47,16 @@ class UserAuthenticationFlowsTest < ActionDispatch::IntegrationTest
 	test "successful login" do
 
 		visit '/'
+
 		# make sure nav bar does not have link 'log out'
 		assert find('.navbar').has_no_link?("Log Out")
+
 		# set up signed in user 
 		user = setup_signed_in_user
+
+		# flashes correct messages
+		assert_equal "Welcome back!", find('.notice').text
+
 		# make sure link for log out exists
 		assert find('.navbar').has_link?("Log Out")
 	end
@@ -58,10 +64,13 @@ class UserAuthenticationFlowsTest < ActionDispatch::IntegrationTest
 	test "failed log in" do
 
 		visit '/login'
+
 		# fill in email with wrong email
 		fill_in "email", with: "wrong@email.com"
+
 		click_button "Login"
 		assert_equal sessions_path, current_path
+		
 		# make sure page says invalid?
 		assert_equal "Email or password not found", find('.error').text
 	end
@@ -73,7 +82,7 @@ class UserAuthenticationFlowsTest < ActionDispatch::IntegrationTest
 
 		visit '/'
 		# click log out in navbar 
-		find('.navbar').click_button("Log Out")
+		find('.navbar').click_link("Log Out")
 		# make sure page has "Bye!"
 		assert_equal "Bye!", find('.notice').text
 		assert find('.navbar').has_no_link?("Log Out")

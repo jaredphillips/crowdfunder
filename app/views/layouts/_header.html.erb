@@ -16,11 +16,14 @@
           </li>          
           <% if logged_in? %>
             <li>
-              <%= link_to 'Log Out', :root %>
+              <%= link_to 'Log Out', logout_path, method: :delete %>
             </li>
           <% else %>
             <li class="<%= 'active' if (current_page? new_user_path) %>">
               <%= link_to 'Sign up', :new_user %>
+            </li>
+            <li class="<%= 'active' if (current_page? new_session_path) %>">
+              <%= link_to 'Log in', :new_session %>
             </li>
           <% end %>
         </ul>
