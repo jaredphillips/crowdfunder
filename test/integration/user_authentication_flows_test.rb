@@ -21,7 +21,7 @@ class UserAuthenticationFlowsTest < ActionDispatch::IntegrationTest
 		assert root_path, current_path
 		
 		# and a message should flash message 'account created'
-		assert page.has_content?('Account Created')
+		assert_equal "Account Created!", find('.notice:first').text
 
 		# # navbar doesn't have a link to sign up but log out
 		# assert find('.navbar').has_link?('Log Out')
@@ -35,8 +35,12 @@ class UserAuthenticationFlowsTest < ActionDispatch::IntegrationTest
 		user = FactoryGirl.build(:user)
 		fill_in "user[email]", with: user.email
 		click_button "Create Account"
+
 		# redirect to users / new path 
 		assert_equal users_path, current_path
 		assert page.has_no_content?('Account Created')
+
+		# should see try again message on failure to register
+		assert_equal "Try again!", find('.alert:first').text
 	end
 end
