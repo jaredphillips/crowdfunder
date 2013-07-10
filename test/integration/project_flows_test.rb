@@ -50,4 +50,31 @@ class ProjectFlowsTest < ActionDispatch::IntegrationTest
 		# "Projects" should remain active when on a project's show page
 		assert_equal "Projects", find('.navbar ul li.active a').text
 	end
+
+	test "pagination" do
+		user = FactoryGirl.create(:user)
+
+		50.times do |i|
+			Project.create!(
+				title: "Star Wars Part #{RomanNumerals.to_roman(i + 7)}",
+				teaser: "Teaser Part #{RomanNumerals.to_roman(i + 7)}",
+				description: "Description Part #{RomanNumerals.to_roman(i + 7)}",
+				goal: (14761994 * (i + 1)),
+			)
+		end
+
+		visit '/projects'
+
+		# expect the most recent projects on page 1 (8 per page)
+		assert page.has_content?("Star Wars Part L")
+		assert page.has_no_content?("Star Wars Part IIL")
+		page.assert_selector '.project', count: 8
+
+		# click to go to page 2
+		page.find('.pagination').click_link "2"
+		assert_equal paginated_projects_path(page: 2), current_path
+
+		assert page.has_content?("Star Wars Part XLIII")
+		assert page.has_no_content?("Star Wars Part L")
+	end
 end

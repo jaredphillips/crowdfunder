@@ -1,16 +1,8 @@
 Crowdfunder::Application.routes.draw do
-  get "projects/index"
-  get "projects/show"
-  get "projects/new"
-  get "projects/create"
-  get "projects/edit"
-  get "projects/update"
-  get "projects/destroy"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'static_pages#home'
-
   resources :projects do
+    get 'page/:page', action: :index, on: :collection, as: :paginated
     resources :pledges, shallow: true
   end
   
@@ -24,6 +16,8 @@ Crowdfunder::Application.routes.draw do
   namespace :my do
     resources :projects
   end
+
+  root 'static_pages#home'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

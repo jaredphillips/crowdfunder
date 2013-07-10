@@ -25,6 +25,9 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'kaminari-bootstrap'
 
+# To Roman Numerals
+gem 'roman-numerals'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

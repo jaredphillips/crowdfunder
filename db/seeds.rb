@@ -11,11 +11,12 @@ Project.destroy_all
 
 user = User.create!(first_name: "Example", last_name: "User", email: "example@email.com", password: "12345678")
 
-project1 = user.projects.create!(title: "Project 1", teaser: "Teaser text 1",
-  description: "Description 1", goal: 13000)
-
-project2 = user.projects.create!(title: "Project 2", teaser: "Teaser text 2",
-  description: "Description 2", goal: 210000)
-
-project2 = user.projects.create!(title: "Project 3", teaser: "Teaser text 3",
-  description: "Description 3", goal: 30000)
+50.times do |i|
+	Project.create!(
+		title: "Star Wars Part #{RomanNumerals.to_roman(i + 7)}",
+		teaser: "Teaser Part #{RomanNumerals.to_roman(i + 7)}",
+		description: "Description Part #{RomanNumerals.to_roman(i + 7)}",
+		goal: (14761994 * (i + 1)),
+		user: user
+	)
+end
