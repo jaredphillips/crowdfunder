@@ -42,10 +42,12 @@ class ProjectFlowsTest < ActionDispatch::IntegrationTest
 		# "Projects" should be active on the projects_path
 		assert_equal "Projects", find('.navbar ul li.active a').text
 
+		# make sure only one element remains active
+		assert_equal 1, find('.navbar ul li.active a').count
+
 		click_link "Project 1"
 
 		# "Projects" should remain active when on a project's show page
 		assert_equal "Projects", find('.navbar ul li.active a').text
 	end
-	
 end

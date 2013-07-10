@@ -59,5 +59,25 @@ class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
 
   	assert page.has_content?("My Title")
   end
+
+  test "navigation" do
+  	visit '/'
+
+  	# click on 'My Projects'
+  	find('.navbar').click_link("My Projects")
+  	assert_equal my_projects_path, current_path
+
+  	# 'My Projects' should have class '.active' on my_projects_path and
+  	#    and should be the only active element
+  	assert_equal "My Projects", find('.navbar ul li.active a').text
+  	assert_equal 1, find('.navbar ul li.active a').count
+
+  	# click on 'New Project'
+  	click_link "New Project"
+  	assert_equal new_my_project_path, current_path
+
+  	# make sure 'My Projects' is still active
+  	assert_equal "My Projects", find('.navbar ul li.active a').text
+  end
 end
 
