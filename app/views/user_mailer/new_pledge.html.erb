@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for your pledge, <%= @backer.first_name %></h1>
+    <p>
+      Your generous pledge of $<%= @pledge.amount %> will be put to good use!
+    </p>
+    <p>
+      Thanks again, and stay in touch with the project <%= link_to 'here', project_url(@project) %>.
+    </p>
+    <p>
+      <em><%= @project.user.first_name + " " + @project.user.last_name %></em>
+    </p>
+  </body>
+</html>

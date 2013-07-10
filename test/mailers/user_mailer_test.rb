@@ -7,9 +7,9 @@ class UserMailerTest < ActionMailer::TestCase
 		pledge = FactoryGirl.create(:pledge, project: project)
 		backer = pledge.user
 
-		email = UserMailer.new_pledge(pledge).deliver
+		email = UserMailer.new_pledge(backer, project, pledge).deliver
 		# backer email is the same as email.to
-		assert_equal backer.email, email.to
+		assert_equal [backer.email], email.to
 		
 		# make sure we have the right subject
 		assert_equal "You have backed a project", email.subject

@@ -17,6 +17,8 @@ class PledgesController < ApplicationController
 		
 		if @pledge.save
 			flash[:notice] = "Thanks for supporting this project!"
+			UserMailer.new_pledge(current_user, @project, @pledge).deliver
+			UserMailer.you_got_paid(@project.user, @project, @pledge).deliver
 			redirect_to @project
 		else
 			render 'new'

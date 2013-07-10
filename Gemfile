@@ -21,6 +21,10 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Use kaminari for pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -50,11 +54,11 @@ group :test do
   gem "capybara"  # needed for our integration tests, which we'll talk about more later
   gem 'database_cleaner' # used to undo any changes we made to the database during tests
   gem 'capybara-webkit' #capybara driver needed to handle javascript.
+  # gem 'letter_opener'
 end
 
 # This tutorial requires bootstrap, not us. 
 gem "bootstrap-sass", "~> 2.3.2.0"
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

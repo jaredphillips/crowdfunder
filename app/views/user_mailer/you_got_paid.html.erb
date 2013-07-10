@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You just got paid, dawg!</h1>
+    <p>
+      <%= mail_to "#{@pledge.user.first_name} #{@pledge.user.last_name}", @pledge.user.email %> has just pledged $<%= @pledge.amount %> to <%= @project.title %>!
+    </p>
+  </body>
+</html>
