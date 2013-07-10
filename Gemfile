@@ -42,6 +42,7 @@ end
 group :development do
   gem 'better_errors' # makes the errors we see in the browser more descriptive
   gem 'pry-rails'
+  gem 'letter_opener'
 end
 
 group :test do 
@@ -53,6 +54,7 @@ end
 
 # This tutorial requires bootstrap, not us. 
 gem "bootstrap-sass", "~> 2.3.2.0"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
