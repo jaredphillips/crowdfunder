@@ -52,7 +52,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def last_email 
-    ActionMailer::Base.deliveries.last_email
+    ActionMailer::Base.deliveries.last
   end
 
   def reset_email
