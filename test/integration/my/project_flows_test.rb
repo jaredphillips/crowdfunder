@@ -70,7 +70,7 @@ class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
   	# 'My Projects' should have class '.active' on my_projects_path and
   	#    and should be the only active element
   	assert_equal "My Projects", find('.navbar ul li.active a').text
-  	assert_equal 1, find('.navbar ul li.active a').count
+		page.assert_selector '.navbar ul li.active a', count: 1
 
   	# click on 'New Project'
   	click_link "New Project"
