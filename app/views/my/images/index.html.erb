@@ -1,3 +1,6 @@
+<%= link_to "New Image", new_my_project_image_path(@project) %>
 <% @images.each do |image| %>
-	<%= image_tag image.image_url.to_s %>
+	<div class="project-img">
+		<%= image_tag image.image_url.to_s %>
+	</div>
 <% end %> 

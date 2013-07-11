@@ -79,5 +79,31 @@ class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
   	# make sure 'My Projects' is still active
   	assert_equal "My Projects", find('.navbar ul li.active a').text
   end
+
+  test "can delete my project" do
+    Capybara.current_driver = Capybara.javascript_driver
+    page.driver.accept_js_confirms!
+    
+    project = FactoryGirl.create(:project, user: @me)
+
+    # visit project page
+    visit '/'
+    find('.navbar').click_link("My Projects")
+    assert_selector(".project", count: 1)
+    
+    # choose an individual project 
+    visit my_project(project)
+
+    click_link "Edit Project"
+    
+    # visit edit my project
+    assert_equal edit_my_project_path(project), current_path
+    
+    # click link that says "delete this project"
+    click_button "Delete Project"
+    
+    #project gets deleted
+    assert_selector(".project", count: 0)  
+  end
 end
 

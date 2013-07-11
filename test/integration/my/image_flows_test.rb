@@ -30,16 +30,21 @@ class My::ImageFlowsTest < ActionDispatch::IntegrationTest
 
   	click_button "Upload photo"
 
+    assert_equal 1, @project.images.count
+    assert_equal my_project_images_path(@project), current_path
+
   	# should have 1 photo now
   	assert_selector('.project-img', count: 1)
   end
 
   test "failing upload of an image to a project" do
-  	visit my_project_images_path(@project)
+    visit my_project_images_path(@project)
 
-  	image_path = File.join(Rails.root, 'app', 'assets', 'images', 'rails.txt')
+  	click_link "New Image"
+    
+    image_path = File.join(Rails.root, 'app', 'assets', 'images', 'rails.txt')
 
-  	attach_file("image[file]", image_path)
+  	attach_file("image[image]", image_path)
   	click_button "Upload photo"
 
   	# correct error flashed
