@@ -21,4 +21,5 @@
 		<%= f.submit "Update project" %>
 	</div>
 <% end %>
+<%= button_to "Delete Project", [:my, @project], method: :delete, data: { confirm: "Are you sure?" }, class: "btn-danger"%>
 

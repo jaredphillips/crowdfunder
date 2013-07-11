@@ -6,6 +6,7 @@ class My::ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
   end
 
   def new
@@ -54,6 +55,8 @@ class My::ProjectsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
   end
 
   protected 

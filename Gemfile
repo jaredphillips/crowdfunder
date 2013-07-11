@@ -63,6 +63,7 @@ group :test do
   gem "capybara"  # needed for our integration tests, which we'll talk about more later
   gem 'database_cleaner' # used to undo any changes we made to the database during tests
   gem 'capybara-webkit' #capybara driver needed to handle javascript.
+  gem "launchy"
   # gem 'letter_opener'
 end
 

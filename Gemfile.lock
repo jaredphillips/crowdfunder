@@ -189,6 +189,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kaminari-bootstrap
+  launchy
   letter_opener
   mime-types
   pg (~> 0.15.1)

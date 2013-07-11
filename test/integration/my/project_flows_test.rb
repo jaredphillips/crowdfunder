@@ -3,6 +3,7 @@ require 'test_helper'
 class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
 
 	setup do
+    Capybara.current_driver = Capybara.javascript_driver
 		@me = setup_signed_in_user
 		@other_user = FactoryGirl.create(:user)
 	end
@@ -48,7 +49,9 @@ class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
 
   test "successful creation of project makes it public right away" do
   	project = FactoryGirl.build(:project, user: @me)
+
   	visit	'/my/projects/new'
+
   	fill_in "project[title]", with: "My Title"
   	fill_in "project[teaser]", with: "Heres the teaser"
   	fill_in "project[description]", with: "Sports, sports, sports"
@@ -70,7 +73,7 @@ class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
   	# 'My Projects' should have class '.active' on my_projects_path and
   	#    and should be the only active element
   	assert_equal "My Projects", find('.navbar ul li.active a').text
-		page.assert_selector '.navbar ul li.active a', count: 1
+		assert_selector '.navbar ul li.active a', count: 1
 
   	# click on 'New Project'
   	click_link "New Project"
@@ -81,28 +84,31 @@ class My::ProjectFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "can delete my project" do
-    Capybara.current_driver = Capybara.javascript_driver
     page.driver.accept_js_confirms!
     
     project = FactoryGirl.create(:project, user: @me)
 
-    # visit project page
-    visit '/'
-    find('.navbar').click_link("My Projects")
-    assert_selector(".project", count: 1)
+    visit my_projects_path
+
+    # project should get created and assigned to 'me'
+    assert_equal 1, @me.projects.count
+
+    assert_selector 'div.project'
+
+    # project info should be in a class 'project'
+    assert_selector '.project', count: 1
     
-    # choose an individual project 
-    visit my_project(project)
+    # click an individual project 
+    click_link project.title
+
+    print page.html
 
     click_link "Edit Project"
-    
-    # visit edit my project
     assert_equal edit_my_project_path(project), current_path
     
-    # click link that says "delete this project"
     click_button "Delete Project"
     
-    #project gets deleted
+    # project should no longer exist/be visible on the index
     assert_selector(".project", count: 0)  
   end
 end

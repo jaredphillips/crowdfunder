@@ -9,7 +9,8 @@
 User.destroy_all
 Project.destroy_all
 
-user = User.create!(first_name: "Example", last_name: "User", email: "example@email.com", password: "12345678")
+me = User.create!(first_name: "Example", last_name: "User", email: "example@email.com", password: "12345678")
+other_guy = User.create!(first_name: "Other", last_name: "User", email: "other_user@email.com", password: "12345678")
 
 50.times do |i|
 	Project.create!(
@@ -17,6 +18,6 @@ user = User.create!(first_name: "Example", last_name: "User", email: "example@em
 		teaser: "Teaser Part #{RomanNumerals.to_roman(i + 7)}",
 		description: "Description Part #{RomanNumerals.to_roman(i + 7)}",
 		goal: (14761994 * (i + 1)),
-		user: user
+		user: me
 	)
 end
