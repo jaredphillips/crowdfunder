@@ -14,7 +14,9 @@ Crowdfunder::Application.routes.draw do
   resources :sessions
 
   namespace :my do
-    resources :projects
+    resources :projects do
+      resources :images, shallow: true
+    end
   end
 
   root 'static_pages#home'

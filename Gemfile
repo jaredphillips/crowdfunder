@@ -3,8 +3,12 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc2'
 
+gem "turn", "~> 0.9.6"
 # Use postgres as the database for Active Record
 gem "pg", "~> 0.15.1"
+
+# use carrierwave for uploading of images
+gem 'carrierwave'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc2'

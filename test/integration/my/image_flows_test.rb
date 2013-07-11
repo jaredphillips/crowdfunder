@@ -17,11 +17,16 @@ class My::ImageFlowsTest < ActionDispatch::IntegrationTest
   	# make sure we start with no images
   	assert_no_selector '.project-img'
 
+    # click a link called new image
+    click_link "New Image"
+
+    assert_equal new_my_project_image_path(@project), current_path
+
   	# grab the image to be uploaded
   	image_path = File.join(Rails.root, 'app', 'assets', 'images', 'rails.png')
 
   	# not sure
-  	attach_file("image[file]", image_path)
+  	attach_file("image[image]", image_path)
 
   	click_button "Upload photo"
 
