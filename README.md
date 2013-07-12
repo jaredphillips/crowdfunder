@@ -1,6 +1,6 @@
-# H1 Crowdfunder is another new way to fund creative projects.
+###Crowdfunder is another new way to fund creative projects.
 
-### H3 Built using Rails using TDD. 
+##### Built using Rails using TDD. 
 
 Stuff learned with this assignment:
 
