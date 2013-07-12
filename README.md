@@ -2,12 +2,11 @@
 
 ##### Built using Rails using TDD. 
 
-Stuff learned with this assignment:
-
-*Capybara for better testing
-*Using Carrierwave to upload images
-*Kaminari for pagination
-*Sorcery for user authenication
+*Stuff learned with this assignment:
++Capybara for better testing
+-Using Carrierwave to upload images
++Kaminari for pagination
+-Sorcery for user authenication
 
 Also really great for understanding relationship concepts.
 
