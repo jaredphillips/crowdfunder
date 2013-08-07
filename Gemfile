@@ -53,8 +53,6 @@ end
 # end
 
 group :development do
-  gem 'better_errors' # makes the errors we see in the browser more descriptive
-  gem 'pry-rails'
 end
 
 group :test do 
