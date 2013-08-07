@@ -1,35 +1,30 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <% if current_page? root_path %>
-        <%= link_to 'CrowdFunder', '#', class: "brand" %>
-      <% else %>
-        <%= link_to 'CrowdFunder', root_path, class: "brand" %>
-      <% end %>
+      <a class="brand" href="#">CrowdFunder</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li class="<%= 'active' if current_page? root_path %>">
+          <li class="<%= 'active' if @nav == :home %>">
             <%= link_to 'Home', :root %>
           </li>
-          <li class="<%= 'active' if (current_page? projects_path) || (current_page? project_path(@project)) %>">
+          <li class="<%= 'active' if @nav == :projects %>">
             <%= link_to 'Projects', :projects %>
-          </li>          
+          </li>
           <% if logged_in? %>
-            <li class="<%= 'active' if (current_page? my_projects_path) || (current_page? new_my_project_path) %>">
-              <%= link_to 'My Projects', :my_projects %>
-            </li>
+            <li class="divider-vertical"></li>
+            <li class="<%= 'active' if @nav == :my_projects %>">
+              <%= link_to 'My Projects', [:my, :projects] %>
             <li>
-              <%= link_to 'Log Out', logout_path, method: :delete %>
-            </li>
-          <% else %>
-            <li class="<%= 'active' if (current_page? new_user_path) %>">
-              <%= link_to 'Sign up', :new_user %>
-            </li>
-            <li class="<%= 'active' if (current_page? new_session_path) %>">
-              <%= link_to 'Log in', :new_session %>
-            </li>
           <% end %>
         </ul>
+      </div>
+      <div class="pull-right">
+        <% if logged_in? %>
+          <%= link_to 'Logout', :session, :method => :delete, class: 'btn' %>
+        <% else %>
+          <%= link_to 'Sign Up', [:new, :user], class: 'btn btn-primary' %>
+          <%= link_to 'Sign In', [:new, :session], class: 'btn btn-success' %>
+        <% end %>
       </div>
     </div>
   </div>
